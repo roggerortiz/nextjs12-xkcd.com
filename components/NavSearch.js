@@ -79,6 +79,7 @@ export default function NavSearch() {
           clearable
           bordered
           value={search}
+          aria-label="Search"
           placeholder="Search..."
           contentLeftStyling={false}
           contentLeft={<Search set="light" size="small" />}
