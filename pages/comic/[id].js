@@ -4,18 +4,23 @@ import { ChevronLeft, ChevronRight } from "react-iconly";
 import { Button, Card, Col, Row, Text } from "@nextui-org/react";
 import { basename } from 'node:path'
 import { readdir, readFile, stat } from 'node:fs/promises'
-import Layout from "components/Layout";
+import { Layout } from "components/Layout";
+import { useI18N } from "context/i18n";
 
 export default function Comic({ id, img, alt, title, width, height, prevId, nextId, hasPrev, hasNext }) {
   const router = useRouter()
+  const { translate } = useI18N()
+
+  const pageTitle = translate('COMIC_DETAILS_TITLE', id)
+  const pageDescription = translate('COMIC_DETAILS_DESCRIPTION', id)
 
   const handlePrevClick = () => router.push(`/comic/${prevId}`)
   const handleNextClick = () => router.push(`/comic/${nextId}`)
 
   return (
     <Layout
-      title={`Comic #${id}`}
-      description={`Comic #${id}: "${title}"`}
+      title={pageTitle}
+      description={pageDescription}
     >
       <Row>
         <Col span={8} offset={2}>
@@ -79,13 +84,17 @@ export default function Comic({ id, img, alt, title, width, height, prevId, next
   )
 }
 
-export async function getStaticPaths() {
+export async function getStaticPaths({ locales }) {
   const files = await readdir('./comics')
 
-  const paths = files.map(file => {
-    const id = basename(file, '.json')
-    return { params: { id } }
-  })
+  const paths = locales.map(locale => {
+    const pathsForLocale = files.map(file => {
+      const id = basename(file, '.json')
+      return { params: { id }, locale }
+    })
+
+    return pathsForLocale
+  }).flat()
 
   return {
     paths,

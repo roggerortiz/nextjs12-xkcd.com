@@ -1,15 +1,16 @@
-import { Navbar } from "@nextui-org/react";
+import NextLink from "next/link";
 import { useRouter } from "next/router";
-import Link from "next/link";
+import { Navbar, styled } from "@nextui-org/react";
 
-export default function NavLink({ children, href }) {
+export function NavLink({ children, href }) {
   const router = useRouter()
+  const isCurrentPath = (router.pathname === href)
 
   return (
-    <Link href={href} passHref>
-      <Navbar.Link isActive={router.pathname === href}>
+    <NextLink href={href} passHref>
+      <Navbar.Link isActive={isCurrentPath}>
         {children}
       </Navbar.Link>
-    </Link>
+    </NextLink>
   )
 }

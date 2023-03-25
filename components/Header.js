@@ -1,8 +1,9 @@
-import { Navbar, Text } from "@nextui-org/react"
 import Link from "next/link"
-import NavLink from "./NavLink"
-import NavSearch from './NavSearch'
-import NavTheme from './NavTheme'
+import { Navbar, Text } from "@nextui-org/react"
+import { NavLink } from "./NavLink"
+import { NavTheme } from './NavTheme'
+import { NavSearch } from './NavSearch'
+import { NavLanguage } from "./NavLanguage"
 
 export function Header() {
   return (
@@ -31,6 +32,8 @@ export function Header() {
         </NavLink>
 
         <NavTheme />
+
+        <NavLanguage />
 
         <NavSearch />
       </Navbar.Content>

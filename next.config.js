@@ -5,6 +5,21 @@ const nextConfig = {
     domains: [
       "imgs.xkcd.com"
     ]
+  },
+  i18n: {
+    locales: ['en', 'es'],
+    defaultLocale: 'en',
+    // localeDetection: false, // default: true
+    // domains: [
+    //   {
+    //     domain: 'xkcd.com',
+    //     defaultLocale: 'en'
+    //   },
+    //   {
+    //     domain: 'xkcd.es',
+    //     defaultLocale: 'es'
+    //   }
+    // ]
   }
 }
 

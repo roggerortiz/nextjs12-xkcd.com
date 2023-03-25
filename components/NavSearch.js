@@ -27,7 +27,7 @@ const Li = styled("li", {
   }
 });
 
-export default function NavSearch() {
+export function NavSearch() {
   const router = useRouter()
   const [search, setSearch] = useState('')
   const [results, setResults] = useState([])

@@ -1,0 +1,8 @@
+{
+  "LATEST_COMICS_TITLE": "Latest Comics",
+  "LATEST_COMICS_DESCRIPTION": "Latest Comics List",
+  "COMIC_DETAILS_TITLE": "Comic #${1}",
+  "COMIC_DETAILS_DESCRIPTION": "Comic #${1} details",
+  "SEARCH_RESULTS_TITLE": "${1} results for ${2}",
+  "SEARCH_RESULTS_DESCRIPTION": "Search results for ${1}"
+}

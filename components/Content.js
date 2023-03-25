@@ -1,6 +1,6 @@
 import { Container } from "@nextui-org/react";
 
-export default function Content({ children }) {
+export function Content({ children }) {
   return (
     <Container
       as="main"

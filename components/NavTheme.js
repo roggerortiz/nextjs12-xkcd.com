@@ -4,7 +4,7 @@ import { Button, Navbar, useTheme } from "@nextui-org/react";
 import { DarkIcon } from "svgs/DarkIcon";
 import { LightIcon } from "svgs/LightIcon";
 
-export default function NavTheme() {
+export function NavTheme() {
   const { isDark } = useTheme()
   const { setTheme } = useNextTheme()
 
@@ -17,7 +17,6 @@ export default function NavTheme() {
       auto
       light
       ripple={false}
-      as={Navbar.Link}
       css={{ width: "auto", borderRadius: "0" }}
       icon={isDark ? <LightIcon /> : <DarkIcon />}
       onClick={handleToggleTheme}

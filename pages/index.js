@@ -1,17 +1,22 @@
 import { Masonry } from "masonic";
-import { readdir, readFile } from 'node:fs/promises'
-import Layout from 'components/Layout'
-import ComicCard from 'components/ComicCard'
 import { Text } from "@nextui-org/react";
+import { readdir, readFile } from 'node:fs/promises'
+import { Layout } from 'components/Layout'
+import { ComicCard } from 'components/ComicCard'
+import { useI18N } from "context/i18n";
 
 export default function Home({ comics }) {
+  const { translate } = useI18N()
+  const pageTitle = translate('LATEST_COMICS_TITLE')
+  const pageDescription = translate('LATEST_COMICS_DESCRIPTION')
+
   return (
     <Layout
-      title="Home"
-      description="Comics for developers"
+      title={pageTitle}
+      description={pageDescription}
     >
       <Text h2>
-        Latest Comics
+        {pageTitle}
       </Text>
 
       <Masonry

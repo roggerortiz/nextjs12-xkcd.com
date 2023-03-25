@@ -1,11 +1,11 @@
 import Head from "next/head";
-import { Container, useTheme } from "@nextui-org/react";
+import { useTheme } from "@nextui-org/react";
 import { Box } from "./Box";
 import { Header } from "./Header";
-import Footer from "./Footer";
-import Content from "./Content";
+import { Footer } from "./Footer";
+import { Content } from "./Content";
 
-export default function Layout({ children, title, description }) {
+export function Layout({ children, title, description }) {
   const { isDark } = useTheme()
 
   return (
@@ -16,7 +16,6 @@ export default function Layout({ children, title, description }) {
       <Head>
         <title>XKCD | {title}</title>
         <meta name="description" content={description} />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <Header />

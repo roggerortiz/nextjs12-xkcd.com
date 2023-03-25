@@ -1,5 +1,7 @@
+import Head from 'next/head';
 import { createTheme, NextUIProvider } from '@nextui-org/react'
 import { ThemeProvider as NextThemesProvider } from 'next-themes';
+import { I18NProvider } from 'context/i18n';
 import 'styles/globals.css'
 
 const lightTheme = createTheme({ type: 'light' })
@@ -16,7 +18,13 @@ function MyApp({ Component, pageProps }) {
       }}
     >
       <NextUIProvider>
-        <Component {...pageProps} />
+        <Head>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+
+        <I18NProvider>
+          <Component {...pageProps} />
+        </I18NProvider>
       </NextUIProvider>
     </NextThemesProvider>
   )

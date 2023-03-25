@@ -1,6 +1,6 @@
 import { Container, Link, useTheme } from "@nextui-org/react";
 
-export default function Footer() {
+export function Footer() {
   const { isDark } = useTheme()
 
   return (

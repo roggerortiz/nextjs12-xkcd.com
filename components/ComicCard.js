@@ -1,8 +1,11 @@
-import { Card, Text } from "@nextui-org/react";
 import Image from "next/image";
 import Link from "next/link";
+import { Card, Text } from "@nextui-org/react";
+import { useRouter } from "next/router";
 
-export default function ComicCard({ data: { id, title, img, alt, width, height } }) {
+export function ComicCard({ data: { id, title, img, alt, width, height } }) {
+  const { locale } = useRouter()
+
   return (
     <Link href={`/comic/${id}`}>
       <a style={{ width: "100%" }}>

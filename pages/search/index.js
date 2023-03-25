@@ -1,19 +1,24 @@
-import { Card, Col, Grid, Row, Text } from "@nextui-org/react"
-import Layout from "components/Layout"
-import Image from "next/image"
 import Link from "next/link"
+import Image from "next/image"
+import { Card, Col, Grid, Row, Text } from "@nextui-org/react"
+import { Layout } from "components/Layout"
 import { search } from "services/search"
+import { useI18N } from "context/i18n"
 
 export default function Search({ query, results }) {
+  const { translate } = useI18N()
+  const pageTitle = translate('SEARCH_RESULTS_TITLE', results.length, query)
+  const pageDescription = translate('SEARCH_RESULTS_DESCRIPTION', query)
+
   return (
     <Layout
-      title={`Results for ${query}`}
-      description={`Search results for ${query}`}
+      title={pageTitle}
+      description={pageDescription}
     >
       <Row>
         <Col span={8} offset={2}>
           <Text h2>
-            {results.length} results for {query}
+            {pageTitle}
           </Text>
 
           <Grid.Container gap={2} justify="center">
