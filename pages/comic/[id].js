@@ -1,15 +1,24 @@
 import Image from "next/image";
-import Link from "next/link";
+import { useRouter } from "next/router";
+import { ChevronLeft, ChevronRight } from "react-iconly";
+import { Button, Card, Col, Row, Text } from "@nextui-org/react";
+import { basename } from 'node:path'
+import { readdir, readFile, stat } from 'node:fs/promises'
 import Layout from "components/Layout";
-import { readdir, readFile, stat } from 'fs/promises'
-import { basename } from 'path'
-import { Card, Col, Container, Row, Text } from "@nextui-org/react";
 
 export default function Comic({ id, img, alt, title, width, height, prevId, nextId, hasPrev, hasNext }) {
+  const router = useRouter()
+
+  const handlePrevClick = () => router.push(`/comic/${prevId}`)
+  const handleNextClick = () => router.push(`/comic/${nextId}`)
+
   return (
-    <Layout>
+    <Layout
+      title={`Comic #${id}`}
+      description={`Comic #${id}: "${title}"`}
+    >
       <Row>
-        <Col span={6} offset={3}>
+        <Col span={8} offset={2}>
           <Card >
             <Card.Header css={{ justifyContent: "center" }}>
               <Text h4 css={{ lineHeight: "$xs", margin: "0" }}>
@@ -18,35 +27,49 @@ export default function Comic({ id, img, alt, title, width, height, prevId, next
             </Card.Header>
             <Card.Divider />
             <Card.Body>
-              <Container display="flex" justify="center">
-                <Image
-                  src={img}
-                  alt={alt}
-                  width={width}
-                  height={height}
-                  layout="intrinsic"
-                  objectFit="contain"
-                />
-              </Container>
-
-              <p style={{ marginTop: "1rem" }}>
-                {alt}
-              </p>
+              <Image
+                src={img}
+                alt={alt}
+                width={width}
+                height={height}
+                layout="intrinsic"
+                objectFit="contain"
+              />
             </Card.Body>
             <Card.Divider />
             <Card.Footer>
-              <Row justify="space-between">
-                {hasPrev && (
-                  <Link href={`/comic/${prevId}`}>
-                    ⬅️ Previous
-                  </Link>
-                )}
+              <Row justify="space-around">
+                <Button
+                  auto
+                  bordered
+                  color="primary"
+                  disabled={!hasPrev}
+                  icon={<ChevronLeft />}
+                  onClick={handlePrevClick}
+                >
+                  Previous
+                </Button>
 
-                {hasNext && (
-                  <Link href={`/comic/${nextId}`}>
-                    Next ➡️
-                  </Link>
-                )}
+                <Button
+                  auto
+                  bordered
+                  color="primary"
+                  disabled={true}
+                >
+                  #{id}
+                </Button>
+
+                <Button
+                  auto
+                  bordered
+                  iconRight
+                  color="primary"
+                  disabled={!hasNext}
+                  icon={<ChevronRight />}
+                  onClick={handleNextClick}
+                >
+                  Next
+                </Button>
               </Row>
             </Card.Footer>
           </Card>

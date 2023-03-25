@@ -1,42 +1,26 @@
-import { Card, Grid, Text } from '@nextui-org/react'
-import { readdir, readFile } from 'fs/promises'
-import Image from 'next/image'
-import Link from 'next/link'
+import { Masonry } from "masonic";
+import { readdir, readFile } from 'node:fs/promises'
 import Layout from 'components/Layout'
+import ComicCard from 'components/ComicCard'
+import { Text } from "@nextui-org/react";
 
 export default function Home({ comics }) {
   return (
-    <Layout>
-      <h2>Latest Comics</h2>
+    <Layout
+      title="Home"
+      description="Comics for developers"
+    >
+      <Text h2>
+        Latest Comics
+      </Text>
 
-      <Grid.Container gap={2} justify="center">
-        {comics.map((comic) => (
-          <Grid key={comic.id} xs={4}>
-            <Link href={`/comic/${comic.id}`}>
-              <a style={{ width: "100%" }}>
-                <Card >
-                  <Card.Header css={{ justifyContent: "center" }}>
-                    <Text h4 css={{ lineHeight: "$xs", margin: "0" }}>
-                      {comic.title}
-                    </Text>
-                  </Card.Header>
-                  <Card.Divider />
-                  <Card.Body css={{ justifyContent: "center" }}>
-                    <Image
-                      src={comic.img}
-                      alt={comic.alt}
-                      width={300}
-                      height={300}
-                      layout="intrinsic"
-                      objectFit="contain"
-                    />
-                  </Card.Body>
-                </Card>
-              </a>
-            </Link>
-          </Grid>
-        ))}
-      </Grid.Container>
+      <Masonry
+        items={comics}
+        columnGutter={20}
+        columnWidth={300}
+        overscanBy={5}
+        render={ComicCard}
+      />
     </Layout>
   )
 }

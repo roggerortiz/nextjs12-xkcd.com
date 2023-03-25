@@ -1,50 +1,42 @@
-import { useTheme as useNextTheme } from 'next-themes'
-import { Button, Link, Navbar, Text, useTheme } from "@nextui-org/react"
-import { DarkIcon } from 'svgs/DarkIcon'
-import { LightIcon } from 'svgs/LightIcon'
+import { Navbar, Text } from "@nextui-org/react"
+import Link from "next/link"
 import NavLink from "./NavLink"
+import NavSearch from './NavSearch'
+import NavTheme from './NavTheme'
 
 export function Header() {
-  const { isDark } = useTheme()
-  const { setTheme } = useNextTheme()
-
-  const handleToggleTheme = (e) => {
-    setTheme(isDark ? 'light' : 'dark')
-  }
-
   return (
     <Navbar
+      isCompact
       isBordered
-      shouldHideOnScroll
       variant="sticky"
     >
       <Navbar.Brand>
-        <Text b color="inherit" hideIn="xs">
-          XKCD App
-        </Text>
+        <Link href="/">
+          <a>
+            <Text b color="inherit" hideIn="xs">
+              XKCD
+            </Text>
+          </a>
+        </Link>
       </Navbar.Brand>
+
       <Navbar.Content
         hideIn="xs"
         variant="underline"
         activeColor="primary"
       >
-        <Button
-          auto
-          light
-          ripple={false}
-          as={Navbar.Link}
-          css={{ width: "auto", borderRadius: "0" }}
-          icon={isDark ? <LightIcon /> : <DarkIcon />}
-          onClick={handleToggleTheme}
-        />
+        <NavTheme />
 
         <NavLink href="/">
           Home
         </NavLink>
 
-        <NavLink href="/about">
-          About
+        <NavLink href="/search?q=repli">
+          Search
         </NavLink>
+
+        <NavSearch />
       </Navbar.Content>
     </Navbar>
   )

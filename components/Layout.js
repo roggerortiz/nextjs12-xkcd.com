@@ -1,24 +1,31 @@
-import { Col, Container, Row } from "@nextui-org/react";
 import Head from "next/head";
+import { Container, useTheme } from "@nextui-org/react";
 import { Box } from "./Box";
 import { Header } from "./Header";
+import Footer from "./Footer";
+import Content from "./Content";
 
-export default function Layout({ children }) {
+export default function Layout({ children, title, description }) {
+  const { isDark } = useTheme()
+
   return (
-    <Box css={{ maxW: "100%" }}>
+    <Box css={{
+      maxW: "100%",
+      backgroundColor: (!isDark ? "$gray200" : undefined)
+    }}>
       <Head>
-        <title>XKCD App - Comics for developers</title>
-        <meta name="description" content="Comics for developers" />
+        <title>XKCD | {title}</title>
+        <meta name="description" content={description} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <Header />
 
-      <Box as="main" css={{ px: "$12", mt: "$8", "@xsMax": { px: "$10" } }}>
-        <Container display="flex" justify="center" direction="row">
-          {children}
-        </Container>
-      </Box>
+      <Content>
+        {children}
+      </Content>
+
+      <Footer />
     </Box>
   )
 }
