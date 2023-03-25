@@ -26,15 +26,11 @@ export function Header() {
         variant="underline"
         activeColor="primary"
       >
-        <NavTheme />
-
         <NavLink href="/">
           Home
         </NavLink>
 
-        <NavLink href="/search?q=repli">
-          Search
-        </NavLink>
+        <NavTheme />
 
         <NavSearch />
       </Navbar.Content>
