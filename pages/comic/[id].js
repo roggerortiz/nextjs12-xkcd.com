@@ -35,9 +35,8 @@ export default function Comic({ id, img, alt, title, width, height, prevId, next
               <Image
                 src={img}
                 alt={alt}
-                width={width}
-                height={height}
-                layout="intrinsic"
+                width={500}
+                height={350}
                 objectFit="contain"
               />
             </Card.Body>
