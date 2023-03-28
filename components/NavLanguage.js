@@ -10,8 +10,11 @@ export function NavLanguage() {
   }
 
   return (
-    <Dropdown placement="bottom-left" triggerType="listbox">
-      <Dropdown.Button 
+    <Dropdown
+      placement="bottom-left"
+      triggerType="listbox"
+    >
+      <Dropdown.Button
         auto
         bordered
       >

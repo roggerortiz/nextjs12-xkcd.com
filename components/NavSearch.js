@@ -66,14 +66,7 @@ export function NavSearch() {
   }
 
   return (
-    <Navbar.Item
-      css={{
-        "@xsMax": {
-          w: "100%",
-          jc: "center",
-        },
-      }}
-    >
+    <Navbar.Item>
       <div>
         <Input
           clearable

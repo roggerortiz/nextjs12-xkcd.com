@@ -1,6 +1,6 @@
 import NextLink from "next/link";
 import { useRouter } from "next/router";
-import { Navbar, styled } from "@nextui-org/react";
+import { Navbar } from "@nextui-org/react";
 
 export function NavLink({ children, href }) {
   const router = useRouter()
@@ -8,7 +8,7 @@ export function NavLink({ children, href }) {
 
   return (
     <NextLink href={href} passHref>
-      <Navbar.Link isActive={isCurrentPath}>
+      <Navbar.Link hideIn='xs' isActive={isCurrentPath}>
         {children}
       </Navbar.Link>
     </NextLink>

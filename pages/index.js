@@ -15,7 +15,7 @@ export default function Home({ comics }) {
       title={pageTitle}
       description={pageDescription}
     >
-      <Text h2>
+      <Text h2 className="mb-4">
         {pageTitle}
       </Text>
 
